@@ -1,0 +1,55 @@
+<div id="createDebatePg">
+  <app-spinner [isRunning]="load"></app-spinner>
+  <h2>Create new debate</h2>
+  <form id="debateForm" name="debateForm" [formGroup]="formdata" (ngSubmit)="createDebate(formdata.value)" novalidate>
+    <div class="form-group col-xs-12 col-md-12 animated bounceInLeft">
+      <label for="debateFormat">Select debate format: </label>
+      <div id="debateFormat">
+        <span id="openFormat" class="btnoption success" [ngClass]="{selected: format==='open'}" (click)="formatSelect('open')">Open</span>
+        <span id="popenFormat" class="btnoption success" [ngClass]="{selected: format==='popen'}" (click)="formatSelect('popen')">Closed
+          for participation</span>
+        <span id="closedFormat" class="btnoption success" [ngClass]="{selected: format==='closed'}" (click)="formatSelect('closed')">Closed</span>
+      </div>
+    </div>
+
+    <div *ngIf="format" class="form-group col-xs-12 col-md-12 animated bounceInLeft">
+      <label for="nSides">Select no of debating sides: </label>
+      <div id="nSides">
+        <span id="twoSides" class="btnoption success" [ngClass]="{selected: sides===2}" (click)="sidesSelect(2)">2
+          sides</span>
+        <span id="threeSides" class="btnoption success" [ngClass]="{selected: sides===3}" (click)="sidesSelect(3)">3
+          sides</span>
+      </div>
+    </div>
+
+    <div *ngIf="sides" class="form-group col-xs-12 col-md-12">
+      <div id="sideTitles">
+        <div class="form-group  animated bounceInLeft">
+          <label for="side1">Title for side 1: </label>
+          <input id="side1" name="sideTitle1" formControlName="sideTitle1" type="text" class="form-control" [(ngModel)]="sideTitle1"
+            required>
+        </div>
+        <div class="form-group animated bounceInLeft">
+          <label for="side1">Title for side 2: </label>
+          <input id="side1" name="sideTitle2" formControlName="sideTitle2" type="text" class="form-control" [(ngModel)]="sideTitle2"
+            required>
+        </div>
+        <div *ngIf="sides" [ngClass]="{bounceOutRight: sides===2}" [ngStyle]="{'display:none': sides===2}" class="form-group animated bounceInLeft">
+          <label for="side1">Title for side 3: </label>
+          <input id="side1" name="sideTitle3" formControlName="sideTitle3" type="text" class="form-control" [(ngModel)]="sideTitle3"
+            required>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="sideTitle1 && sideTitle2" class="form-group col-xs-12 col-md-12 animated bounceInLeft">
+      <label for="desc">Write a brief introduction to the debate: </label>
+      <textarea id="desc" name="debateDesc" formControlName="debateDesc" rows="3" [(ngModel)]="debateDesc" class="form-control"
+        required></textarea>
+    </div>
+
+    <div *ngIf="debateDesc" class="form-group col-xs-12 col-md-12 animated bounceInLeft">
+      <button type="submit" class="btn btn-danger">Start <span class="glyphicon glyphicon-ok"></span></button>
+    </div>
+  </form>
+</div>

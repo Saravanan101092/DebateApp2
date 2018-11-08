@@ -1,0 +1,9 @@
+.navbarbg{
+    background: #f8f9fa;
+    line-height: 20px !important;
+    padding-top:1px;
+    padding-bottom:1px;
+}
+  nav:hover{
+    background-color: #f8f9fa!important;
+  }
